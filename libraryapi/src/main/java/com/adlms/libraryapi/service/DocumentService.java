@@ -15,11 +15,11 @@ public class DocumentService {
 
     private final DocumentRepository repository;
 
+    // method DocumentService
     public DocumentService(DocumentRepository repository) {
         this.repository = repository;
     }
 
-    
     // method: create document
     public DocumentDTOs.DocumentResponse create(DocumentDTOs.CreateDocumentRequest request) {
         Document document = new Document(
