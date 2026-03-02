@@ -21,12 +21,12 @@ public class DocumentController {
         this.service = service;
     }
 
-    @PostMapping
-    public DocumentDTOs.DocumentResponse create(
-            @Valid @RequestBody DocumentDTOs.CreateDocumentRequest request
-    ) {
-        return service.create(request);
-    }
+//    @PostMapping
+//    public DocumentDTOs.DocumentResponse create(
+//            @Valid @RequestBody DocumentDTOs.CreateDocumentRequest request
+//    ) {
+//        return service.create(request);
+//    }
 
     
     // getAll() version 1

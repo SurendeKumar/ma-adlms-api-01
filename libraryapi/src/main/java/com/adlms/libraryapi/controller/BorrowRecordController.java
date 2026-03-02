@@ -42,14 +42,14 @@ public class BorrowRecordController {
 
     
     
-    // POST /users/{id}/borrow-records
-    @PostMapping("/users/{userId}/borrow-records")
-    public BorrowRecordDTOs.BorrowRecordResponse create(
-            @PathVariable Long userId,
-            @Valid @RequestBody BorrowRecordDTOs.CreateBorrowRecordRequest request
-    ) {
-        return service.create(userId, request);
-    }
+////     POST /users/{id}/borrow-records
+//    @PostMapping("/users/{userId}/borrow-records")
+//    public BorrowRecordDTOs.BorrowRecordResponse create(
+//            @PathVariable Long userId,
+//            @Valid @RequestBody BorrowRecordDTOs.CreateBorrowRecordRequest request
+//    ) {
+//        return service.create(userId, request);
+//    }
     
     
     @GetMapping("/borrow-records")
