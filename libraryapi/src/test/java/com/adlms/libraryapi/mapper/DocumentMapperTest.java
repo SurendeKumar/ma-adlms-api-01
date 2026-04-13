@@ -23,7 +23,7 @@ class DocumentMapperTest {
 
         setDocumentId(document, 1L);
 
-        DocumentDTOs.DocumentResponse response = DocumentMapper.toResponse(document);
+        DocumentDTOs.DocumentResponse response = DocumentMapper.toResponse(document, false);
 
         assertNotNull(response);
         assertEquals(1L, response.id());
@@ -44,7 +44,7 @@ class DocumentMapperTest {
 
         setDocumentId(document, 25L);
 
-        DocumentDTOs.DocumentResponse response = DocumentMapper.toResponse(document);
+        DocumentDTOs.DocumentResponse response = DocumentMapper.toResponse(document, false);
 
         assertNotNull(response);
         assertEquals(25L, response.id());

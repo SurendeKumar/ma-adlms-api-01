@@ -1,6 +1,7 @@
 package com.adlms.libraryapi.service;
 
 import com.adlms.libraryapi.dto.DocumentDTOs;
+
 import com.adlms.libraryapi.entity.Document;
 import com.adlms.libraryapi.exception.NotFoundException;
 import com.adlms.libraryapi.mapper.DocumentMapper;
@@ -9,15 +10,23 @@ import org.springframework.stereotype.Service;
 import com.adlms.libraryapi.dto.PageResponse;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
+import com.adlms.libraryapi.client.UserActivityClient;
+
+
 
 @Service
 public class DocumentService {
 
     private final DocumentRepository repository;
+    
+    private final UserActivityClient userActivityClient;
 
     // method DocumentService
-    public DocumentService(DocumentRepository repository) {
+    public DocumentService(
+    		DocumentRepository repository, 
+    		UserActivityClient userActivityClient) {
         this.repository = repository;
+        this.userActivityClient = userActivityClient;
     }
 
     // method: create document
@@ -29,7 +38,7 @@ public class DocumentService {
                 request.publishedDate()
         );
 
-        return DocumentMapper.toResponse(repository.save(document));
+        return DocumentMapper.toResponse(repository.save(document), false);
     }
 
     
@@ -44,7 +53,7 @@ public class DocumentService {
     // method: get all documents
     public PageResponse<DocumentDTOs.DocumentResponse> getAll(Pageable pageable) {
         Page<DocumentDTOs.DocumentResponse> page = repository.findAll(pageable)
-                .map(DocumentMapper::toResponse);
+        		.map(document -> DocumentMapper.toResponse(document, false));
 
         return PageResponse.from(page);
     }
@@ -54,8 +63,11 @@ public class DocumentService {
     public DocumentDTOs.DocumentResponse getById(Long id) {
         Document document = repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Document not found: " + id));
+        
+        boolean borrowed = !userActivityClient.getBorrowRecordsByDocumentId(id).isEmpty();
 
-        return DocumentMapper.toResponse(document);
+
+        return DocumentMapper.toResponse(document, borrowed);
     }
 
     
@@ -78,7 +90,7 @@ public class DocumentService {
         document.setDocumentType(request.documentType());
         document.setPublishedDate(request.publishedDate());
 
-        return DocumentMapper.toResponse(repository.save(document));
+        return DocumentMapper.toResponse(repository.save(document), false);
     }
     
     

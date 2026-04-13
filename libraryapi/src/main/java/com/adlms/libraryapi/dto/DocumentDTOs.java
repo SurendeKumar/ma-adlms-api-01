@@ -15,7 +15,8 @@ public class DocumentDTOs {
             String title,
             String author,
             DocumentType documentType,
-            @JsonFormat(pattern = "yyyy-MM-dd") LocalDate publishedDate
+            @JsonFormat(pattern = "yyyy-MM-dd") LocalDate publishedDate, 
+            boolean borrowed
 		) {}
 	
 	// 2. request DTP (what API accepts for create)

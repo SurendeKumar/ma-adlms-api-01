@@ -44,14 +44,16 @@ class DocumentControllerTest {
                                 "Clean Code",
                                 "Robert C. Martin",
                                 DocumentType.Book,
-                                LocalDate.of(2008, 8, 1)
+                                LocalDate.of(2008, 8, 1),
+                                false
                         ),
                         new DocumentDTOs.DocumentResponse(
                                 2L,
                                 "Effective Java",
                                 "Joshua Bloch",
                                 DocumentType.Book,
-                                LocalDate.of(2018, 1, 6)
+                                LocalDate.of(2018, 1, 6), 
+                                false
                         )
                 ),
                 0,
@@ -82,7 +84,8 @@ class DocumentControllerTest {
                 "Domain-Driven Design",
                 "Eric Evans",
                 DocumentType.Book,
-                LocalDate.of(2003, 8, 30)
+                LocalDate.of(2003, 8, 30), 
+                false
         );
 
         when(service.getById(1L)).thenReturn(response);
@@ -128,7 +131,8 @@ class DocumentControllerTest {
                 "Clean Architecture",
                 "Robert C. Martin",
                 DocumentType.Book,
-                LocalDate.of(2017, 9, 20)
+                LocalDate.of(2017, 9, 20),
+                false
         );
 
         when(service.create(any(DocumentDTOs.CreateDocumentRequest.class))).thenReturn(response);
@@ -185,7 +189,8 @@ class DocumentControllerTest {
                 "Refactoring",
                 "Martin Fowler",
                 DocumentType.Book,
-                LocalDate.of(2018, 11, 19)
+                LocalDate.of(2018, 11, 19),
+                false
         );
 
         when(service.update(eq(5L), any(DocumentDTOs.UpdateDocumentRequest.class))).thenReturn(response);

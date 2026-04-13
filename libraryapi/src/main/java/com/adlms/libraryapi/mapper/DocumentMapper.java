@@ -5,13 +5,14 @@ import com.adlms.libraryapi.entity.Document;
 public class DocumentMapper {
 	
 	// method - return document response after mapper
-	public static DocumentDTOs.DocumentResponse toResponse(Document document) {
+	public static DocumentDTOs.DocumentResponse toResponse(Document document, boolean borrowed) {
 		return new DocumentDTOs.DocumentResponse(
                 document.getId(),
                 document.getTitle(),
                 document.getAuthor(),
                 document.getDocumentType(),
-                document.getPublishedDate()
+                document.getPublishedDate(),
+                borrowed
         );
 	}
 
