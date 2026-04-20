@@ -42,8 +42,7 @@ public class DocumentService {
         );
 
         // enable when testing User Activity micro-service
-        // return DocumentMapper.toResponse(repository.save(document), false);
-        return DocumentMapper.toResponse(repository.save(document), false); // not checking the borrowed response for now
+         return DocumentMapper.toResponse(repository.save(document), false);
     }
 
     
@@ -98,8 +97,7 @@ public class DocumentService {
         document.setPublishedDate(request.publishedDate());
         
         // enable when testing User Activity micro-service
-        // return DocumentMapper.toResponse(repository.save(document), false);
-        return DocumentMapper.toResponse(document, false); // not checking the borrowed response for now
+         return DocumentMapper.toResponse(repository.save(document), false);
     }
     
     
