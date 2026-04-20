@@ -19,14 +19,17 @@ public class DocumentService {
 
     private final DocumentRepository repository;
     
-    private final UserActivityClient userActivityClient;
+    // private final UserActivityClient userActivityClient;
 
     // method DocumentService
     public DocumentService(
-    		DocumentRepository repository, 
-    		UserActivityClient userActivityClient) {
+    		DocumentRepository repository) {
+    		// enable when testing User Activity micro-service
+    		// UserActivityClient userActivityClient) {
         this.repository = repository;
-        this.userActivityClient = userActivityClient;
+        
+        // enable when testing User Activity micro-service
+        // this.userActivityClient = userActivityClient;
     }
 
     // method: create document
@@ -38,7 +41,9 @@ public class DocumentService {
                 request.publishedDate()
         );
 
-        return DocumentMapper.toResponse(repository.save(document), false);
+        // enable when testing User Activity micro-service
+        // return DocumentMapper.toResponse(repository.save(document), false);
+        return DocumentMapper.toResponse(repository.save(document), false); // not checking the borrowed response for now
     }
 
     
@@ -64,10 +69,12 @@ public class DocumentService {
         Document document = repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Document not found: " + id));
         
-        boolean borrowed = !userActivityClient.getBorrowRecordsByDocumentId(id).isEmpty();
+        //boolean borrowed = !userActivityClient.getBorrowRecordsByDocumentId(id).isEmpty();
 
-
-        return DocumentMapper.toResponse(document, borrowed);
+        
+        // enable when testing User Activity micro-service
+        // return DocumentMapper.toResponse(document, borrowed);
+        return DocumentMapper.toResponse(document, false); // not checking the borrowed response for now
     }
 
     
@@ -89,8 +96,10 @@ public class DocumentService {
         document.setAuthor(request.author());
         document.setDocumentType(request.documentType());
         document.setPublishedDate(request.publishedDate());
-
-        return DocumentMapper.toResponse(repository.save(document), false);
+        
+        // enable when testing User Activity micro-service
+        // return DocumentMapper.toResponse(repository.save(document), false);
+        return DocumentMapper.toResponse(document, false); // not checking the borrowed response for now
     }
     
     
