@@ -40,3 +40,24 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t libraryapi .
+
+      - name: Run container
+        run: docker run -d --name libraryapi-container -p 8080:8080 libraryapi
+
+      - name: Wait for application startup
+        run: sleep 20
+
+      - name: Verify application is running
+        run: curl --fail http://localhost:8080/documents
+
+      - name: Show container logs if failure
+        if: failure()
+        run: docker logs libraryapi-container
+
+      - name: Stop container
+        if: always()
+        run: docker stop libraryapi-container || true
+
+      - name: Remove container
+        if: always()
+        run: docker rm libraryapi-container || true
