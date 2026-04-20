@@ -2,17 +2,15 @@ name: Library API CI
 
 on:
   push:
-    branches:
-      - main
-      - master
   pull_request:
-    branches:
-      - main
-      - master
 
 jobs:
   build-test-package:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: libraryapi
 
     steps:
       - name: Checkout source code
@@ -38,4 +36,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: library-api-jar
-          path: target/*.jar
+          path: libraryapi/target/*.jar
