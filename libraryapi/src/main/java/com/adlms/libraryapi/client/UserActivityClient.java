@@ -1,6 +1,7 @@
 package com.adlms.libraryapi.client;
 
 import com.adlms.libraryapi.dto.ExternalBorrowRecordDTO;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -12,6 +13,11 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
+@ConditionalOnProperty(
+	    name = "user.activity.client.enabled",
+	    havingValue = "true",
+	    matchIfMissing = false
+	)
 public class UserActivityClient {
 
     private final RestTemplate restTemplate;

@@ -117,14 +117,16 @@ class DocumentControllerTest {
 
     @Test
     void create_shouldReturn201AndLocationHeader() throws Exception {
-        String requestJson = """
-                {
-                  "title": "Clean Architecture",
-                  "author": "Robert C. Martin",
-                  "documentType": "Book",
-                  "publishedDate": "2017-09-20"
-                }
-                """;
+//        String requestJson = """
+//                {
+//                  "title": "Clean Architecture",
+//                  "author": "Robert C. Martin",
+//                  "documentType": "Book",
+//                  "publishedDate": "2017-09-20"
+//                }
+//                """;
+//        
+        String requestJson = "{\"title\":\"Clean Architecture\",\"author\":\"Robert C. Martin\",\"documentType\":\"Book\",\"publishedDate\":\"2017-09-20\"}";
 
         DocumentDTOs.DocumentResponse response = new DocumentDTOs.DocumentResponse(
                 10L,
@@ -153,14 +155,16 @@ class DocumentControllerTest {
 
     @Test
     void create_shouldReturn400WhenRequestIsInvalid() throws Exception {
-        String invalidJson = """
-                {
-                  "title": "",
-                  "author": "",
-                  "documentType": null,
-                  "publishedDate": null
-                }
-                """;
+//        String invalidJson = """
+//                {
+//                  "title": "",
+//                  "author": "",
+//                  "documentType": null,
+//                  "publishedDate": null
+//                }
+//                """;
+        
+        String invalidJson = "{\"title\":\"\",\"author\":\"\",\"documentType\":null,\"publishedDate\":null}";
 
         mockMvc.perform(post("/documents")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -175,14 +179,16 @@ class DocumentControllerTest {
 
     @Test
     void update_shouldReturnUpdatedDocument() throws Exception {
-        String requestJson = """
-                {
-                  "title": "Refactoring",
-                  "author": "Martin Fowler",
-                  "documentType": "Book",
-                  "publishedDate": "2018-11-19"
-                }
-                """;
+//        String requestJson = """
+//                {
+//                  "title": "Refactoring",
+//                  "author": "Martin Fowler",
+//                  "documentType": "Book",
+//                  "publishedDate": "2018-11-19"
+//                }
+//                """;
+        
+        String requestJson = "{\"title\":\"Refactoring\",\"author\":\"Martin Fowler\",\"documentType\":\"Book\",\"publishedDate\":\"2018-11-19\"}";
 
         DocumentDTOs.DocumentResponse response = new DocumentDTOs.DocumentResponse(
                 5L,

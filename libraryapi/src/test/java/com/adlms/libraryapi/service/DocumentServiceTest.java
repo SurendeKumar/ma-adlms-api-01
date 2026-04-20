@@ -92,12 +92,20 @@ class DocumentServiceTest {
 
         PageResponse<DocumentDTOs.DocumentResponse> response = service.getAll(pageable);
 
-        assertNotNull(response);
-        assertEquals(2, response.content().size());
-        assertEquals(0, response.page());
-        assertEquals(2, response.size());
-        assertEquals(2, response.totalElements());
-        assertEquals(1, response.totalPages());
+//        assertNotNull(response);
+//        assertEquals(2, response.content().size());
+//        assertEquals(0, response.page());
+//        assertEquals(2, response.size());
+//        assertEquals(2, response.totalElements());
+//        assertEquals(1, response.totalPages());
+        
+        
+        // new version for new page response class
+        assertEquals(2, response.getContent().size());
+        assertEquals(0, response.getPage());
+        assertEquals(2, response.getSize());
+        assertEquals(2, response.getTotalElements());
+        assertEquals(1, response.getTotalPages());
 
         verify(repository, times(1)).findAll(pageable);
     }
